@@ -8,3 +8,7 @@ Varun Singh:
 Worked on language design for if-else blocks and ternary operators.
 Created grammar rules for the same in BNF form.
 
+
+Abhishek Masetty:
+Worked on language design for numeric data types and boolean types.
+Created grammar rules for the same in BNF form.
