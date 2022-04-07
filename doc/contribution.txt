@@ -7,6 +7,7 @@ Rajat:-
 Varun Singh:
 Worked on language design for if-else blocks and ternary operators.
 Created grammar rules for the same in BNF form.
+Worked on design for parsing and runtime implementation
 
 
 Abhishek Masetty:
