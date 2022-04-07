@@ -13,3 +13,11 @@ Worked on design for parsing and runtime implementation
 Abhishek Masetty:
 Worked on language design for numeric data types and boolean types.
 Created grammar rules for the same in BNF form.
+
+Sahil Jambhulkar:
+Worked on language design for the Print, Assignment and String types.
+Created grammar rules for the same in BNF form.
+
+Konark Bhad:
+Worked on language design for the while of our language
+Created grammar rules for the same in BNF form.
