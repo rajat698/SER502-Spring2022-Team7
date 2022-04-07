@@ -1,1 +1,3 @@
 Rajat:-
+1. Worked on language design for the for loop of our language.
+2. Created grammar rules for the same in BNF form.
