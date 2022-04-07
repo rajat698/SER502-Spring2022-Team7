@@ -1,1 +1,5 @@
 Rajat:-
+
+Varun Singh:
+Worked on language design for if-else blocks and ternary operators.
+Created grammer rules for the same in BNF form.
