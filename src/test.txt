@@ -1,0 +1,22 @@
+str x4;
+bool ay23 = False;
+int zz111z = 2 + 3 * 5;
+x = “abc”;
+int a = x + y / 4;
+for-loop(i = 1; i< 10; i=i+1;) { z = z + 2; }
+for-loop(i in range(2,4)) { z = z+ 2; } 
+x == 5 ? display “lmao” : z = 2 ;
+if (x==5) { display “no else is okay” ; }
+if (x==5) { display “go to else”; } else { z = 2 ; }
+display x;
+display “goodbye world :(”
+shuru
+int x;
+str zzz = “Hello world”;
+for-loop(i = 1; i<10; i=i+1;)  { 
+display “something”;
+}
+x == 10 ? display zzz; : x = 10;
+khatam
+y = not y;
+bool z = True or False;
