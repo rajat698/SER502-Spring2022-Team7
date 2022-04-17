@@ -3,7 +3,7 @@ import nltk
 
 from nltk.tokenize import word_tokenize, sent_tokenize
 
-file = open("src/test.txt", "r")
+file = open("/Users/rajat/Documents/Uni/SER502/SER502-Spring2022-Team7/src/test.txt", "r")
 text = file.read()
 specials = '+-*/%='
 
