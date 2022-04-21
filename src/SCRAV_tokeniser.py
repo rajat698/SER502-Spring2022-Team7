@@ -3,7 +3,8 @@ sample = file.read()
 
 keywords = ["for"]
 keywords_language = ["shuru"]
-specials = set(["=", "+", "-", "}", ",", "{", "/", ";", "\\", "(", ")", "<", ">", ":" ])
+specials = set(["=", "+", "-", "}", ",", "{", "/", ";", "\\", "(", ")", "<", ">", ":", "|", "~" ])
+syntactic_sugar_elements = set(["+", "-", '*', "/", "|", "~"])
 
 stack = []
 final_stack = []
@@ -70,6 +71,13 @@ def tokenise(sample):
             i += 1
             continue
 
+        #Example: End of the code
+        elif i == len(sample) - 1:
+            stack.append(sample[x:i+1])
+            x = i + 1
+            i += 1
+            continue
+
         else:
             i += 1
             continue
@@ -81,5 +89,12 @@ for new_line in tokenise(sample):
 
 while("" in final_stack):
     final_stack.remove("")
+
+#Syntactic sugar
+for i in range(len(final_stack)):
+    if final_stack[i] in syntactic_sugar_elements and final_stack[i + 1] == "=":
+        final_stack.insert(i + 2, final_stack[i])
+        final_stack[i] = "="
+        final_stack[i + 1] = final_stack[i - 1]
 
 print(final_stack)
