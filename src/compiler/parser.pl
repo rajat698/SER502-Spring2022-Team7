@@ -20,6 +20,9 @@ spec_char('?').
 spec_char('@').
 spec_char('~').
 
+datatype(int).
+datatype(str).
+datatype(bool).
 
 boolean('True').
 boolean('False').
@@ -67,9 +70,6 @@ bool_expr2(and(T1,T2)) --> bool_expr2(T1), [and], bool_expr3(T2).
 bool_expr2(T) --> bool_expr3(T).
 
 % equality (boolean)
-value(T) --> bool_expr(T).
-value(T) --> expr(T).
-value(T) --> string(T).
 bool_expr3(equals(T1,T2)) -->  bool_expr(T1), [==], bool_expr(T2).
 bool_expr3(equals(T1,T2)) --> expr(T1), [==], expr(T2).
 bool_expr3(equals(T1,T2)) --> id(T1), [==], value(T2).
@@ -84,5 +84,33 @@ bool_expr3(T) -->['('], bool_expr(T), [')'].
 bool_expr3(not(T)) --> [not], bool_expr(T).
 bool_expr3(T) --> bool(T).
 bool(T) --> [T], {boolean(T)}.
+
+% statements
+stmt_list(none) --> [].
+stmt_list(stmt_list(T1,T2)) --> stmt(T1), stmt_list(T2).
+
+value(T) --> bool_expr(T).
+value(T) --> expr(T).
+value(T) --> string(T).
+
+% declarations
+stmt(dec(T1,T2)) --> [T1], id(T2), [;], {datatype(T1)}.
+stmt(decAssign(T1,T2,T3)) --> [T1], id(T2), [=], value(T3), [;], {datatype(T1)}.     
+
+% assignment
+stmt(assign(T1,T2)) --> id(T1), [=], value(T2), [;].
+
+% if-else block
+stmt(ifelse(T1,T2,T3)) --> bool_expr(T1), ['?'], stmt_list(T2), [':'], stmt_list(T3).
+stmt(ifelse(T1,T2,T3)) --> [if], 
+    ['('], bool_expr(T1), [')'], 
+    ['{'], stmt_list(T2), ['}'],
+    [else],
+    ['{'], stmt_list(T3), ['}'].
+
+
+    
+
+
 
 
