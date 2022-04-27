@@ -15,15 +15,17 @@ digit(9).
 num(N) --> [N], {number(N)}.
 %num(num(T, N)) --> num(T), [N], {digit(N)}.
 
-expr(+(T1,T2)) --> expr(T1), [+], expr2(T2).
-expr(-(T1,T2)) --> expr(T1), [-], expr2(T2).
+expr(+(T1,T2)) --> expr(T1), ['%'], expr2(T2).
 expr(T) --> expr2(T).
 
-expr2(*(T1,T2)) --> expr2(T1), [*], expr3(T2).
-expr2(/(T1,T2)) --> expr2(T1), [/], expr3(T2).
-expr2('%'(T1,T2)) --> expr2(T1), ['%'], expr3(T2).
+expr2(+(T1,T2)) --> expr2(T1), [+], expr3(T2).
+expr2(-(T1,T2)) --> expr2(T1), [-], expr3(T2).
 expr2(T) --> expr3(T).
 
-expr3(T) --> num(T).
+expr3(*(T1,T2)) --> expr2(T1), [*], expr4(T2).
+expr3(/(T1,T2)) --> expr2(T1), [/], expr4(T2).
+expr3(T) --> expr4(T).
+
+expr4(T) --> num(T).
 %expr3(T) --> id(T).
-expr3(T) --> ['('], expr(T) , [')'].
+expr4(T) --> ['('], expr(T) , [')'].
