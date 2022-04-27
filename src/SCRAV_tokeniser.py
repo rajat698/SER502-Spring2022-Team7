@@ -1,4 +1,4 @@
-file = open("/Users/rajat/Documents/Uni/SER502/SER502-Spring2022-Team7/src/test.txt", "r")
+file = open("test.txt", "r")
 sample = file.read()
 
 keywords = ["for"]
