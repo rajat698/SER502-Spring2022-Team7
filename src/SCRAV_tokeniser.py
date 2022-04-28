@@ -1,23 +1,25 @@
-file = open("/Users/rajat/Documents/Uni/SER502/SER502-Spring2022-Team7/src/test.txt", "r")
+file = open("test.txt", "r")
 sample = file.read()
 
 keywords = ["for"]
 keywords_language = ["shuru"]
-specials = set(["=", "+", "-", "}", ",", "{", "/", ";", "\\", "(", ")", "<", ">", ":" ])
+specials = set(["=", "+", "-", "}", ",", "{", "/", ";", "\\", "(", ")", "<", ">", ":", "|", "~", "*" ])
+syntactic_sugar_elements = set(["+", "-", '*', "/", "|", "~"])
 
-stack = []
-final_stack = []
+
+
 x = 0
 
 def tokenise(sample):
     x = 0
     i = 0
     stack = []
-    
+    final_stack = []
     while(i < len(sample)):
 
         #Example: Sup world
         if sample[i] == " " or sample[i] == "\n" and sample[i - 1] not in specials and sample[x+1:i] not in keywords:
+            # print("TAG-C", sample[x:i])
             stack.append(sample[x:i])
             x = i + 1
             i += 1
@@ -48,15 +50,17 @@ def tokenise(sample):
             x = i + 1
             continue
 
-        #Example: for-loop()
-        elif sample[x:i] == "for-loop":
-            stack.append(sample[x+1:i])
-            x = i + 1
-            i += 1
-            continue   
+        # Example: for-loop()
+        # elif sample[x:i] == "for-loop":
+        #     #print("FORLOOP", sample[x:i])
+        #     stack.append(sample[x+1:i])
+        #     x = i + 1
+        #     i += 1
+        #     continue   
         
         #Example: i=
         elif sample[i] in specials and sample[i - 1] not in specials and sample[x+1:i] not in keywords:
+            # print("TAG-A", sample[x], "and", sample[x:i],"and", sample[i])
             stack.append(sample[x:i])        
             stack.append(sample[i])
             x = i + 1
@@ -65,7 +69,16 @@ def tokenise(sample):
         
         #Example: ++
         elif sample[i] in specials and sample[x+1:i] not in keywords:
+            # print("TAG-B", sample[i])
             stack.append(sample[i])
+            x = i + 1
+            i += 1
+            continue
+
+        #Example: End of the code
+        elif i == len(sample) - 1:
+
+            stack.append(sample[x:i+1])
             x = i + 1
             i += 1
             continue
@@ -73,13 +86,26 @@ def tokenise(sample):
         else:
             i += 1
             continue
+        
+    for new_line in stack:
+        final_stack.append(new_line.replace("\n", ""))
+    
+    while("" in final_stack):
+        final_stack.remove("")
 
-    return stack
+    return final_stack
 
-for new_line in tokenise(sample):
-    final_stack.append(new_line.replace("\n", ""))
 
-while("" in final_stack):
-    final_stack.remove("")
+final_stack = tokenise(sample)
+#Syntactic sugar
+for i in range(len(final_stack)):
+    if final_stack[i] in syntactic_sugar_elements and final_stack[i + 1] == "=":
+        final_stack.insert(i + 2, final_stack[i])
+        final_stack[i] = "="
+        final_stack[i + 1] = final_stack[i - 1]
 
-print(final_stack)
+def main():
+    print(final_stack)
+
+if __name__ == "__main__":
+    main()
