@@ -106,6 +106,13 @@ stmt(display(T)) --> [display], value(T).
 
 % assignment
 stmt(assign(T1,T2)) --> id(T1), [=], value(T2).
+stmt(+=(T1,T2)) --> id(T1), [+=], expr(T2).
+stmt(-=(T1,T2)) --> id(T1), [-=], expr(T2).
+stmt(*=(T1,T2)) --> id(T1), [*=], expr(T2).
+stmt(/=(T1,T2)) --> id(T1), [/=], expr(T2).
+
+
+
 
 % ternary if-else
 stmt(ifelse(T1,T2,T3)) --> bool_expr(T1), ['?'], stmt(T2), [':'], stmt(T3), [';'].
