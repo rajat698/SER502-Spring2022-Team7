@@ -2,7 +2,7 @@ import unittest
 from unittest import result
 import sys
 
-sys.path.insert(0, '''/Users/abhishek/Assignments/Spring'22/SER502/Project/SER502-Spring2022-Team7/src''')
+sys.path.insert(0, "/Users/abhishek/Assignments/Spring'22/SER502/Project/SER502-Spring2022-Team7/src")
 from SCRAV_tokeniser import tokenise
 
 
@@ -19,9 +19,11 @@ class Testing(unittest.TestCase):
     testCase_4 = "shuru\n int x;\n str zzz;"
     expected_4 = ['shuru', 'int', 'x', ';','str', 'zzz', ';']
 
-    testCase_5 = '''shuru\n int x;\n str zzz ="Hello World";\n for-loop (i=10;i<10;i++;)'''
-    expected_5 = ['shuru', 'int', 'x', ';', 'str', 'zzz', '=', '“Hello', 'world”', ';', 'for-loop', '(', 'i', '=', '1', ';', 'i', '<', '10', ';', 'i', '=', 'i', '+', '1', ';', ')', '{', 'display', '“something”', ';', '}', 'x', '=', '=', '10', '?', 'display', 'zzz', ';', ':', 'x', '=', '10', ';', 'khatam']
+    testCase_5 = '''shuru\n int x;\n str zzz ="Hello World";\n for-loop (i=10;i<10;i++;) \n { \n display '''
+    expected_5 = ['shuru', 'int', 'x', ';', 'str', 'zzz', '=', '“Hello', 'world”', ';', 'for-loop', '(', 'i', '=', '1', ';', 'i', '<', '10', ';', 'i', '=', 'i', '+', '1', ';', ')', '{', 'display']
 
+    testCase_6 = '''display "Something" '''
+    expected_6 = ['display', '"', 'Something', '"']
     
     def test1(self):
         result = tokenise(Testing.testCase_1)
@@ -42,6 +44,10 @@ class Testing(unittest.TestCase):
     def test5(self):
         result = tokenise(Testing.testCase_5)
         self.assertEqual(result, Testing.expected_5)
+
+    def test6(self):
+        result = tokenise(Testing.testCase_6)
+        self.assertAlmostEqual(result, Testing.expected_6)
 
 if __name__ == '__main__':
     unittest.main()
