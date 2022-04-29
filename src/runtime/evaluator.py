@@ -37,15 +37,10 @@ class Evaluator:
         return node, leaves
 
     def evaluate(self, tree):
-        if '(' not in tree:
-            print('EMPTY: ', tree)
-            return
-
-        # TODO: add logic to evaluate base case nodes
         node, leaves = self.readTree(tree)
-        print(node, " : ", leaves)
-        print(self.env)
-        print('*******************')
+        #print(node, " : ", leaves)
+        #print(self.env)
+        #print('*******************')
 
         # NUMBERS
         if node == 'num':
