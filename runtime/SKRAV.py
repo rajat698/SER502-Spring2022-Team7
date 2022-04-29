@@ -24,10 +24,12 @@ if __name__=='__main__':
     for soln in prolog.query(query):
          parseTree = soln['T']
          #print(soln['T'])
-    print(parseTree)
+    #print(parseTree)
     # EVALUATE
     eval = Evaluator()
     eval.evaluate(parseTree)
+    print('PROGRAM TERMINATED')
+    print('ENV: ', eval.env)
     
 
 

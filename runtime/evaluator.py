@@ -4,7 +4,8 @@
 class Evaluator:
 
     def __init__(self):
-        self.env = {'x':5, 'y':2}
+        self.env = {}
+        self.defaultValues = {'int':0, 'str':'', 'bool':False }
 
 
     def readTree(self, tree):
@@ -15,7 +16,7 @@ class Evaluator:
         i=start
         while i<len(tree):
             if tree[i]=='(':
-                node = tree[:i]
+                node = tree[:i].strip()
                 start = i+1
                 break 
             i+=1
@@ -29,9 +30,9 @@ class Evaluator:
             elif tree[i]==')':
                 bracketsCount-=1
                 if bracketsCount == -1:
-                    leaves.append(tree[start:i])
+                    leaves.append(tree[start:i].strip())
             elif tree[i]==',' and bracketsCount == 0:
-                leaves.append(tree[start:i])
+                leaves.append(tree[start:i].strip())
                 start = i+1
             i+=1
         return node, leaves
@@ -46,6 +47,8 @@ class Evaluator:
         #TODO: add logic to evaluate base case nodes
         node, leaves = self.readTree(tree)
         print(node, " : ", leaves)
+        print(self.env)
+        print('*******************')
         
         # numbers
         if node=='num':
@@ -56,8 +59,8 @@ class Evaluator:
         
         # identifiers
         elif node == 'id':
-            #TODO: Error: variable not initialized
-            return self.env[leaves[0]]
+            #TODO: init error
+            return self.env[leaves[0]]['val']
 
         # string
         elif node == 'str':
@@ -67,15 +70,61 @@ class Evaluator:
         elif node == 'bool':
             return leaves[1]=='True'
 
+        # addition
+        elif node == 't_add':
+            #TODO: data type errors
+            return self.evaluate(leaves[0]) + self.evaluate(leaves[1])
+
+        # subtraction
+        elif node == 't_sub':
+            #TODO: data type errors
+            return self.evaluate(leaves[0]) - self.evaluate(leaves[1])
+        
+        # multiplication
+        elif node == 't_mul':
+            #TODO: data type errors
+            return self.evaluate(leaves[0]) * self.evaluate(leaves[1])
+
+        # division
+        elif node == 't_div':
+            #TODO: data type errors
+            return int(self.evaluate(leaves[0]) / self.evaluate(leaves[1]))
+
+        # modulo
+        elif node == 't_mod':
+            #TODO: data type errors
+            return self.evaluate(leaves[0]) % self.evaluate(leaves[1])
+
+        elif node == 'dec':
+            #TODO: multiple init errors
+            self.env[leaves[1]] = {'type': leaves[0], 'val': self.defaultValues[leaves[0]]}
+
+        elif node == 'assign':
+            #TODO: type mismatch errors, init errors
+            self.env[leaves[0]]['val'] = self.evaluate(leaves[1])
+
+        elif node == 'decAssign':
+            #TODO: multiple init errors
+            self.env[leaves[1]] = {'type': leaves[0], 'val': self.evaluate(leaves[2])}
+            pass
+
+        elif node == 'display':
+            print(self.evaluate(leaves[0]))
+
+        elif node == 'stmt_list':
+            self.evaluate(leaves[0])
+            self.evaluate(leaves[1])
+
+
         
         
         
 
 
 
-        for l in leaves:
-            #TODO: recursively evaluate leaves
-            self.evaluate(l)
+        # for l in leaves:
+        #     #TODO: recursively evaluate leaves
+        #     self.evaluate(l)
 
 
         
