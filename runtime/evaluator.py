@@ -64,7 +64,7 @@ class Evaluator:
 
         # string
         elif node == 'str':
-            return leaves[1]
+            return leaves[0]
 
         # boolean
         elif node == 'bool':
