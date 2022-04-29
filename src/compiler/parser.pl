@@ -49,13 +49,13 @@ id_suffix --> [A], id_suffix, {is_alpha(A)}.
 id_suffix --> [N], id_suffix, {atom_number(N, _)}.
 
 % arithmetic expressions
-expr(+(T1,T2)) --> expr(T1), [+], expr2(T2).
-expr(-(T1,T2)) --> expr(T1), [-], expr2(T2).
+expr(t_add(T1,T2)) --> expr(T1), [+], expr2(T2).
+expr(t_sub(T1,T2)) --> expr(T1), [-], expr2(T2).
 expr(T) --> expr2(T).
 
-expr2(*(T1,T2)) --> expr2(T1), [*], expr3(T2).
-expr2(/(T1,T2)) --> expr2(T1), [/], expr3(T2).
-expr2(mod(T1,T2)) --> expr2(T1), ['%'], expr3(T2).
+expr2(t_mul(T1,T2)) --> expr2(T1), [*], expr3(T2).
+expr2(t_div(T1,T2)) --> expr2(T1), [/], expr3(T2).
+expr2(t_mod(T1,T2)) --> expr2(T1), ['%'], expr3(T2).
 expr2(T) --> expr3(T).
 
 expr3(T) --> num(T).
@@ -106,10 +106,10 @@ stmt(display(T)) --> [display], value(T).
 
 % assignment
 stmt(assign(T1,T2)) --> id(T1), [=], value(T2).
-stmt(+=(T1,T2)) --> id(T1), [+=], expr(T2).
-stmt(-=(T1,T2)) --> id(T1), [-=], expr(T2).
-stmt(*=(T1,T2)) --> id(T1), [*=], expr(T2).
-stmt(/=(T1,T2)) --> id(T1), [/=], expr(T2).
+stmt(addAssign(T1,T2)) --> id(T1), [+=], expr(T2).
+stmt(subAssign(T1,T2)) --> id(T1), [-=], expr(T2).
+stmt(mulAssign(T1,T2)) --> id(T1), [*=], expr(T2).
+stmt(divAssign(T1,T2)) --> id(T1), [/=], expr(T2).
 
 
 
@@ -131,7 +131,7 @@ stmt_block(forT(T1,T2,T3,T4)) --> [for-loop, '('],
 
 % for-loop range
 stmt_block(forR(T1,T2,T3,T4)) --> [for-loop, '('],
-    id(T1), [in, range, '('], expr(T2), [','] expr(T3), [')', '{'],
+    id(T1), [in, range, '('], expr(T2), [','], expr(T3), [')', '{'],
     stmt_list(T4), [')'].
 
 % program
