@@ -35,6 +35,27 @@ class Evaluator:
                 start = i+1
             i+=1
         return node, leaves
+
+    
+    def evaluate(self, tree):
+        #TODO: add logic to evaluate base case nodes
+        if '(' not in tree:
+            return
+
+
+        #TODO: add logic to evaluate base case nodes
+        node, leaves = self.readTree(tree)
+
+        print(node, " : ", leaves)
+
+
+        for l in leaves:
+            #TODO: recursively evaluate leaves
+            self.evaluate(l)
+
+
+        
+
     
 
 if __name__=='__main__':
@@ -43,4 +64,4 @@ if __name__=='__main__':
     s1 = 'display(id(y))'
     s2 = 'forT( assign(id(x), 0), lt(id(x), 10), assign(id(x), t_add(id(x), 1)), stmt_list( display(id(x)), display(id(y)) ) )'
     s3 = 'id(x)'
-    print(eval.readTree(s3))
+    print(eval.evaluate(s))
