@@ -1,6 +1,8 @@
 shuru
-int x;
-y = 2 +  -5;
+int x = 5;
+int y;
+y = 2 + 3 * (-5 - 3) / 4 ;
 display y;
-$$ for-loop(x=0; x<10 ; x=x+1) {display x; display y ;} $$
+bool z = y or False;
+for-loop(x=0; x<10 ; x+=1) {display x; display z ;}
 khatam
