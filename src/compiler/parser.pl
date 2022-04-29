@@ -1,3 +1,18 @@
+keyword('shuru').
+keyword('khatam').
+keyword('int').
+keyword('str').
+keyword('bool').
+keyword('True').
+keyword('False').
+keyword('for-loop').
+keyword('in').
+keyword('range').
+keyword('if').
+keyword('else').
+keyword('display').
+
+
 spec_char('!').
 spec_char('\\').
 spec_char('#').
@@ -46,7 +61,7 @@ char --> [A], char, {atom_number(A, _)}.
 char --> [A], char, {spec_char(A)}.
 
 % identifiers
-id(id(T)) --> [T], {atom_chars(T, TList), isIdentifier(TList, [])}.
+id(id(T)) --> [T], {not(keyword(T)) ,atom_chars(T, TList), isIdentifier(TList, [])}.
 isIdentifier --> [A], id_suffix, {is_alpha(A)}.
 id_suffix --> [].
 id_suffix --> [A], id_suffix, {is_alpha(A)}.
@@ -88,7 +103,7 @@ bool_expr3(gteq(T1,T2)) --> expr(T1), ['>='], expr(T2).
 bool_expr3(T) -->['('], bool_expr(T), [')'].
 bool_expr3(not(T)) --> ['not'], bool_expr(T).
 bool_expr3(T) --> bool(T).
-bool(T) --> [T], {boolean(T)}.
+bool(bool(T)) --> [T], {boolean(T)}.
 
 % statements
 stmt_list(T) --> stmt(T), [';'].
