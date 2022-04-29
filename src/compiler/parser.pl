@@ -118,18 +118,19 @@ stmt_list(stmt_list(T1,T2)) --> stmt_block(T1), stmt_list(T2).
 value(T) --> bool_expr(T).
 value(T) --> expr(T).
 value(T) --> string(T).
-stmt(dec(T1,T2)) --> [T1], id(T2), {datatype(T1)}.
-stmt(decAssign(T1,T2,T3)) --> [T1], id(T2), ['='], value(T3), {datatype(T1)}.
+id_name(T) --> [T], {not(keyword(T)) ,atom_chars(T, TList), isIdentifier(TList, [])}.
+stmt(dec(T1,T2)) --> [T1], id_name(T2), {datatype(T1)}.
+stmt(decAssign(T1,T2,T3)) --> [T1], id_name(T2), ['='], value(T3), {datatype(T1)}.
 
 % display
 stmt(display(T)) --> ['display'], value(T).
 
 % assignment
-stmt(assign(T1,T2)) --> id(T1), ['='], value(T2).
-stmt(addAssign(T1,T2)) --> id(T1), ['+='], expr(T2).
-stmt(subAssign(T1,T2)) --> id(T1), ['-='], expr(T2).
-stmt(mulAssign(T1,T2)) --> id(T1), ['*='], expr(T2).
-stmt(divAssign(T1,T2)) --> id(T1), ['/='], expr(T2).
+stmt(assign(T1,T2)) --> id_name(T1), ['='], value(T2).
+stmt(addAssign(T1,T2)) --> id_name(T1), ['+='], expr(T2).
+stmt(subAssign(T1,T2)) --> id_name(T1), ['-='], expr(T2).
+stmt(mulAssign(T1,T2)) --> id_name(T1), ['*='], expr(T2).
+stmt(divAssign(T1,T2)) --> id_name(T1), ['/='], expr(T2).
 
 
 
