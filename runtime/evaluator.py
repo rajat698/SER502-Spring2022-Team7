@@ -58,6 +58,16 @@ class Evaluator:
         elif node == 'id':
             #TODO: Error: variable not initialized
             return self.env[leaves[0]]
+
+        # string
+        elif node == 'str':
+            return leaves[1]
+
+        # boolean
+        elif node == 'bool':
+            return leaves[1]=='True'
+
+        
         
         
 
