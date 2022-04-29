@@ -19,8 +19,9 @@ if __name__=='__main__':
     prolog = Prolog()
     prolog.consult('src/compiler/parser.pl')
     query = "program(T, " + str(tokens) + ", [])."
+    #print(query)
     #parseTree = ''
-    for soln in prolog.query("program(T, " + str(tokens) + ", [])"):
+    for soln in prolog.query(query):
          parseTree = soln['T']
          #print(soln['T'])
     print(parseTree)

@@ -9,6 +9,7 @@ class Evaluator:
 
     def readTree(self, tree):
         tree=tree.strip()
+        leaves = []
         start=0
         # NODE
         i=start
@@ -19,7 +20,7 @@ class Evaluator:
                 break 
             i+=1
         #print('NODE: ', node)
-        # LEFT CHILD
+        # CHILDREN
         i=start
         bracketsCount = 0
         while i<len(tree):
@@ -27,17 +28,19 @@ class Evaluator:
                 bracketsCount+=1
             elif tree[i]==')':
                 bracketsCount-=1
+                if bracketsCount == -1:
+                    leaves.append(tree[start:i])
             elif tree[i]==',' and bracketsCount == 0:
-                leftChild = tree[start:i]
+                leaves.append(tree[start:i])
                 start = i+1
-                break
             i+=1
-        #print('LEFT: ', leftChild)
-        #print('RIGHT: ', tree[start:len(tree)-1])
-        return [node, leftChild, tree[start:len(tree)-1]]
+        return node, leaves
     
 
 if __name__=='__main__':
     eval = Evaluator()
     s = 'stmt_list(dec(int, id(x)), stmt_list(assign(id(y), t_add(2, 5)), display(id(y))))'
-    eval.readTree(s)
+    s1 = 'display(id(y))'
+    s2 = 'forT( assign(id(x), 0), lt(id(x), 10), assign(id(x), t_add(id(x), 1)), stmt_list( display(id(x)), display(id(y)) ) )'
+    s3 = 'id(x)'
+    print(eval.readTree(s3))
