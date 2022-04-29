@@ -28,7 +28,7 @@ datatype(bool).
 boolean('True').
 boolean('False').
 
-:-use_rendering(svgtree).
+%:-use_rendering(svgtree).
 :-table expr/3, expr2/3, expr3/3, bool_expr/3, bool_expr2/3.
 
 % numbers
