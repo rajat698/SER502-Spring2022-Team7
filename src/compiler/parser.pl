@@ -103,6 +103,7 @@ bool_expr3(gteq(T1,T2)) --> expr(T1), ['>='], expr(T2).
 bool_expr3(T) -->['('], bool_expr(T), [')'].
 bool_expr3(not(T)) --> ['not'], bool_expr(T).
 bool_expr3(T) --> bool(T).
+bool_expr3(T) --> id(T).
 bool(bool(T)) --> [T], {boolean(T)}.
 
 % statements
