@@ -32,7 +32,11 @@ boolean('False').
 :-table expr/3, expr2/3, expr3/3, bool_expr/3, bool_expr2/3.
 
 % numbers
-num(N1) --> [N], {atom_number(N, N1)}.
+num(num(pos,N1)) --> [N], {atom_number(N, N1)}.
+num(num(neg,N1)) --> ['-'], [N], {atom_number(N, N1)}.
+num(num(pos,N1)) --> ['+'], [N], {atom_number(N, N1)}.
+
+
 
 % strings
 string(str(T)) --> ['\"'], [T], ['\"'], {atom_chars(T, TList), char(TList, [])}.
