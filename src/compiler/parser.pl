@@ -59,6 +59,7 @@ char --> [].
 char --> [A], char, {is_alpha(A)}.
 char --> [A], char, {atom_number(A, _)}.
 char --> [A], char, {spec_char(A)}.
+char --> [' '], char.
 
 % identifiers
 id(id(T)) --> [T], {not(keyword(T)) ,atom_chars(T, TList), isIdentifier(TList, [])}.
