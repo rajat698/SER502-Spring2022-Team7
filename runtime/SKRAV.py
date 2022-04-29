@@ -4,6 +4,7 @@ from pyswip import Prolog
 sys.path.insert(0, os.getcwd() + '/src/compiler')
 
 from tokenizer import Tokenizer
+from evaluator import Evaluator
 
 
 if __name__=='__main__':

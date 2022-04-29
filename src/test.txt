@@ -1,5 +1,5 @@
 shuru
 int x;
-y = x +  5;
+y = 2 +  5;
 display y;
 khatam
