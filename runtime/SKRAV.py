@@ -26,5 +26,8 @@ if __name__=='__main__':
          #print(soln['T'])
     print(parseTree)
     # EVALUATE
+    eval = Evaluator()
+    eval.evaluate(parseTree)
+    
 
 

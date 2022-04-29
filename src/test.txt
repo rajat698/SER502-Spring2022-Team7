@@ -1,6 +1,6 @@
 shuru
 int x;
-y = 2 +  5;
+y = 2 +  -5;
 display y;
-for-loop(x=0; x<10 ; x=x+1) {display x; display y ;}
+$$ for-loop(x=0; x<10 ; x=x+1) {display x; display y ;} $$
 khatam

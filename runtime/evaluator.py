@@ -4,7 +4,7 @@
 class Evaluator:
 
     def __init__(self):
-        self.env = {}
+        self.env = {'x':5, 'y':2}
 
 
     def readTree(self, tree):
@@ -38,15 +38,29 @@ class Evaluator:
 
     
     def evaluate(self, tree):
-        #TODO: add logic to evaluate base case nodes
         if '(' not in tree:
+            print('EMPTY: ', tree)
             return
 
 
         #TODO: add logic to evaluate base case nodes
         node, leaves = self.readTree(tree)
-
         print(node, " : ", leaves)
+        
+        # numbers
+        if node=='num':
+            val = int(leaves[1])
+            if leaves[0]=='neg':
+                val*=-1
+            return val
+        
+        # identifiers
+        elif node == 'id':
+            #TODO: Error: variable not initialized
+            return self.env[leaves[0]]
+        
+        
+
 
 
         for l in leaves:
@@ -64,4 +78,5 @@ if __name__=='__main__':
     s1 = 'display(id(y))'
     s2 = 'forT( assign(id(x), 0), lt(id(x), 10), assign(id(x), t_add(id(x), 1)), stmt_list( display(id(x)), display(id(y)) ) )'
     s3 = 'id(x)'
-    print(eval.evaluate(s))
+    s4 = 'num(neg,6)'
+    print(eval.evaluate(s4))
