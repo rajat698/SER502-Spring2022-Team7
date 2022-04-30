@@ -60,7 +60,7 @@ class Evaluator:
 
         # BOOLEAN
         elif node == 'bool':
-            return leaves[1] == 'True'
+            return leaves[0] == 'True'
 
         # IDENTIFIERS
         elif node == 'id':
