@@ -10,7 +10,7 @@ from evaluator import Evaluator
 
 if __name__=='__main__':
      #READ FILE
-     file = open("data/new.xxx", "r")
+     file = open("data/ternary.xxx", "r")
      program =  file.read()
      # TOKENIZE
      Tk = Tokenizer()

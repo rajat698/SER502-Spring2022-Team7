@@ -1,8 +1,8 @@
 func bloo (bool a) {
     if (a==True) { 
-        display “IF EXECUTED”; 
+        display "IF EXECUTED"; 
         }
-         else {"ELSE EXECUTED" ; }
+         else { display "ELSE EXECUTED" ; }
          };
 shuru
 bool a = True;
