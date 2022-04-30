@@ -1,7 +1,9 @@
 class Tokenizer:
 
     def __init__(self) -> None:
+
         self.keywords = set(['shuru', 'khatam', 'int', 'str', 'bool', 'True', 'False', 'for-loop', 'in', 'range', 'if', 'else', 'display', 'func'])
+
         self.comparators = set(['+=', '-=', '*=', '/=', '>=', '==', '<='])
         self.operators = set(['+', '-', '*', '/', '%', '<', '>', '='])
         self.delimiters = set([';', '(', ')', '{', '}', ',', '?', ':'])
@@ -83,13 +85,32 @@ if __name__ == "__main__":
     Tk = Tokenizer()
 
     tokens = []
-    sample2 = 'for-loop(i in range(2,4)) { z = z+ 2; } '
-    sample3 = 'x == 10 ?              display zzz : x = 10;'
-    sample4 = ' $$this is a commmmment $$ if (x==5) { display "no else is okay" ; }   '
+    def testcases():
+        sample1='hello world'
+        sample2 = 'for-loop(i in range(2,4)) { z = z+ 2; } '
+        sample3 = 'x == 10 ?              display zzz : x = 10;'
+        sample4 = ' $$this is a commmmment $$ if (x==5) { display "no else is okay" ; }   '
+        sample5 = 'int x;'
+        sample6 = 'str zzz = “Hello world”;'
+        sample7 = 'for-loop(i = 1; i<10; i=i+1;)  { ' 
+        sample8  = 'display “something”;}'
+        sample9 = 'x == 10 ? display zzz; : x = 10;'
+        sample10 = 'khatam'
+        print(Tk.tokenizeProgram(sample1)==['hello world'])
+        print(Tk.tokenizeProgram(sample2)==['for-loop', '(', 'i', 'in', 'range', '(', '2', ',', '4', ')', ')', '{', 'z', '=', 'z', '+', '2', ';', '}'])
+        print(Tk.tokenizeProgram(sample3)==['x', '==', '10', '?', 'display', 'zzz', ':', 'x', '=', '10', ';'])
+        print(Tk.tokenizeProgram(sample4)==['if', '(', 'x', '==', '5', ')', '{', 'display', '"', 'no else is okay', '"', ';', '}'])
+        print(Tk.tokenizeProgram(sample5)==['int', 'x', ';'])
+        print(Tk.tokenizeProgram(sample6)==['str', 'zzz', '=', '“Hello', 'world”', ';'])
+        print(Tk.tokenizeProgram(sample7)==['for-loop', '(', 'i', '=', '1', ';', 'i', '<', '10', ';', 'i', '=', 'i', '+', '1', ';', ')', '{'])
+        print(Tk.tokenizeProgram(sample8)==['display', '“something”', ';', '}'])
+        print(Tk.tokenizeProgram(sample9)==['x', '==', '10', '?', 'display', 'zzz', ';', ':', 'x', '=', '10', ';'])
+        print(Tk.tokenizeProgram(sample10)==['khatam'])
+        
 
 
-    print(Tk.tokenizeProgram(sample4))
-
+    testcases()
+    
     # for line in sample4.split('\n'):
     #     #for word in line.split(' '):
     #     print('WORD: ', line )
