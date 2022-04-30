@@ -21,7 +21,7 @@ Worked on language design for numeric data types and boolean types.
 Created grammar rules for the same in BNF form.
 Helped in fixing the tokenizer issues.
 Created various testcases for the parser.
-Wrote various testcases for evaluator.
+Wrote various testcases for tokenizer and evaluator.
 Did end-to-end testing of evaluator, parser and functionality of the language in general
 
 Sahil Jambhulkar:
