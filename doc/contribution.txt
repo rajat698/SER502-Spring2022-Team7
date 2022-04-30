@@ -11,6 +11,9 @@ Varun Singh:
 Worked on language design for if-else blocks and ternary operators.
 Created grammar rules for the same in BNF form.
 Worked on design for parsing and runtime implementation
+Implemented parser in prolog
+Implemented evaluator in python
+Added support for using functions in SKRAV
 
 
 Abhishek Masetty:
