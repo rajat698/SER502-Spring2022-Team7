@@ -1,0 +1,12 @@
+func bloo (int a, int b) {  int c; c = a + b; 
+hello();
+return c;};
+
+func hello () { display "hello world" ;} 
+
+
+shuru
+int apple = -10;
+int z = bloo(15, apple);
+display z;
+khatam
