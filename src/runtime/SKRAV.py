@@ -19,18 +19,18 @@ if __name__=='__main__':
      prolog = Prolog()
      prolog.consult('src/compiler/parser.pl')
      query = "program(T, " + str(tokens) + ", [])."
-     print(query)
+     #print(query)
      #parseTree = ''
      for soln in prolog.query(query):
           parseTree = soln['T']
           break
-     print(parseTree)
+     #print(parseTree)
      #exit()
 
      # EVALUATE
      eval = Evaluator()
      eval.evaluate(parseTree)
-     print('PROGRAM TERMINATED')
+     print('PROGRAM EXECUTED')
      print('ENV: ', eval.env)
      print('FN: ', eval.functions)
     

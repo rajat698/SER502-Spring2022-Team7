@@ -5,8 +5,10 @@ func hello () { display "hello world" ;}
 
 shuru
 int x = 5;
-int y;
-y = 7 + 3 * (-5 - 3) / 4 ; $$ y=1 $$
-display y;
-for-loop(x=0; x<5 ; x+=1) {display x; }
+ $$int y;$$
+$$y = 7 + 3 * (-5 - 3) / 4 ;  y=1 $$
+$$display y;$$
+$$for-loop(x=0; x<5 ; x+=1) {display x; }$$
+int z = bloo(x, 6);
+display z;
 khatam
