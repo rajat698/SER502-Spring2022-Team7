@@ -120,6 +120,7 @@ stmt_list(stmt_list(T1,T2)) --> stmt_block(T1), stmt_list(T2).
 value(T) --> bool_expr(T).
 value(T) --> expr(T).
 value(T) --> string(T).
+value(call(T1,T2)) --> id_name(T1), ['('] , arg_list(T2), [')'].
 id_name(T) --> [T], {not(keyword(T)) ,atom_chars(T, TList), isIdentifier(TList, [])}.
 stmt(dec(T1,T2)) --> [T1], id_name(T2), {datatype(T1)}.
 stmt(decAssign(T1,T2,T3)) --> [T1], id_name(T2), ['='], value(T3), {datatype(T1)}.
@@ -143,6 +144,13 @@ stmt(ifelse(T1,T2,T3)) --> bool_expr(T1), ['?'], stmt(T2), [':'], stmt(T3), [';'
 % return statement
 stmt(return(T)) --> ['return'], value(T).
 
+%function call
+stmt(call(T1,T2)) --> id_name(T1), ['('] , arg_list(T2), [')'].
+arg_list(noneArg()) --> [].
+arg_list(T) --> id_name(T).
+arg_list(argList(T1,T2)) --> id_name(T1), [','], arg_list(T2).
+
+
 % if-else block
 stmt_block(ifelse(T1,T2,T3)) --> ['if'], 
     ['('], bool_expr(T1), [')'], 
@@ -161,13 +169,13 @@ stmt_block(forR(T1,T2,T3,T4)) --> ['for-loop', '('],
     stmt_list(T4), ['}'].
 
 % FUNCTIONS
-func_list(noneFunc) --> [].
+func_list(noneFunc()) --> [].
 func_list(funcList(T1,T2)) --> func(T1), func_list(T2).
 func(func(T1,T2,T3)) --> ['func'], id_name(T1), 
     ['('], parameter_list(T2), [')', '{'], 
     stmt_list(T3), ['}'].
 % parameters
-parameter_list(nonePmt) --> [].
+parameter_list(nonePmt()) --> [].
 parameter_list(T) --> parameter(T).
 parameter_list(pmtList(T1,T2)) --> parameter(T1), [','], parameter_list(T2).
 parameter(pmt(T1,T2)) --> [T1], id_name(T2), {datatype(T1)}.

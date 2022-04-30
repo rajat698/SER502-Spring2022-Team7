@@ -157,6 +157,16 @@ class Evaluator:
             while iterator['val'] <= stopVal:
                 self.evaluate(leaves[3])
                 iterator['val']+=1
+
+        # FUNCTIONS
+        elif node=='noneFunc':
+            pass
+        
+        
+        # PROGRAM
+        elif node == 'prog':
+            self.evaluate(leaves[0])
+            self.evaluate(leaves[1])
     
         return 0
 
