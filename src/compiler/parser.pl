@@ -165,7 +165,7 @@ stmt_block(forT(T1,T2,T3,T4)) --> ['for-loop', '('],
 
 % for-loop range
 stmt_block(forR(T1,T2,T3,T4)) --> ['for-loop', '('],
-    id_name(T1), ['in', 'range', '('], expr(T2), [','], expr(T3), [')', '{'],
+    id_name(T1), ['in', 'range', '('], expr(T2), [','], expr(T3), [')', ')', '{'],
     stmt_list(T4), ['}'].
 
 % FUNCTIONS
