@@ -5,6 +5,7 @@ class Evaluator:
 
     def __init__(self):
         self.env = {}
+        self.functions = {}
         self.defaultValues = {'int': 0, 'str': '', 'bool': False}
 
     def readTree(self, tree):
@@ -161,7 +162,13 @@ class Evaluator:
         # FUNCTIONS
         elif node=='noneFunc':
             pass
-        
+        elif node=='funcList':
+            self.evaluate(leaves[0])
+            self.evaluate(leaves[1])
+        elif node=='func':
+            self.defineFunc(leaves)
+        elif node=='call':
+            print('call', leaves)
         
         # PROGRAM
         elif node == 'prog':
@@ -169,6 +176,30 @@ class Evaluator:
             self.evaluate(leaves[1])
     
         return 0
+
+    
+    def parseParameters(self, tree, Accumulator):
+        node, leaves = self.readTree(tree)
+        if node == 'nonePmt':
+            return
+        elif node == 'pmt':
+            Accumulator.append(leaves)
+        elif node == 'pmtList':
+            self.parseParameters(leaves[0], Accumulator)
+            self.parseParameters(leaves[1], Accumulator)
+        
+    
+    def defineFunc(self, leaves):
+        funcName = leaves[0] # bloo
+        pmtList = []
+        self.parseParameters(leaves[1], pmtList) # [['int', 'a'], ['int', 'b']]
+        funcTree = leaves[2]
+        self.functions[funcName] = {'parameters': pmtList, 'tree': funcTree}
+
+
+
+
+    
 
 
 if __name__ == '__main__':
@@ -178,4 +209,12 @@ if __name__ == '__main__':
     s2 = 'forT( assign(id(x), 0), lt(id(x), 10), assign(id(x), t_add(id(x), 1)), stmt_list( display(id(x)), display(id(y)) ) )'
     s3 = 'id(x)'
     s4 = 'num(neg,6)'
-    print(eval.evaluate(s4))
+
+    #print(eval.evaluate(s4))
+
+    # acc = []
+    # eval.parseParameters('pmtList(pmt(int, a), pmt(int, b))', acc)
+    # print(acc)
+
+
+    f1 = ['bloo', 'pmtList(pmt(int, a), pmt(int, b))', 'stmt_list(dec(int, c), stmt_list(assign(c, t_add(id(a), id(b))), return(id(c))))']

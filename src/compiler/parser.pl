@@ -170,15 +170,16 @@ stmt_block(forR(T1,T2,T3,T4)) --> ['for-loop', '('],
 
 % FUNCTIONS
 func_list(noneFunc()) --> [].
-func_list(funcList(T1,T2)) --> func(T1), func_list(T2).
-func(func(T1,T2,T3)) --> ['func'], id_name(T1), 
+func_list(func(T1,T2,T3)) --> ['func'], id_name(T1), 
     ['('], parameter_list(T2), [')', '{'], 
     stmt_list(T3), ['}'].
+func_list(funcList(func(T1,T2,T3),T4)) --> ['func'], id_name(T1), 
+    ['('], parameter_list(T2), [')', '{'], 
+    stmt_list(T3), ['}', ';'], func_list(T4).
 % parameters
 parameter_list(nonePmt()) --> [].
-parameter_list(T) --> parameter(T).
-parameter_list(pmtList(T1,T2)) --> parameter(T1), [','], parameter_list(T2).
-parameter(pmt(T1,T2)) --> [T1], id_name(T2), {datatype(T1)}.
+parameter_list(pmt(T1,T2)) --> [T1], id_name(T2), {datatype(T1)}.
+parameter_list(pmtList(pmt(T1,T2),T3)) --> [T1], id_name(T2), {datatype(T1)}, [','], parameter_list(T3).
 
 
 
