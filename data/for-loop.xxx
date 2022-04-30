@@ -1,0 +1,7 @@
+shuru
+int z;
+int i;
+z=5;
+for-loop(i = 1; i< 10; i=i+1) { z = z + 1; }
+display z;
+khatam

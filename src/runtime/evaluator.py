@@ -174,6 +174,7 @@ class Evaluator:
             functionEvaluator = Evaluator()
             func = self.functions[leaves[0]]
             args = []
+            functionEvaluator.functions = self.functions
 
             if len(func['parameters']):
                 self.parseArguments(leaves[1], args)

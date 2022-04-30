@@ -1,0 +1,10 @@
+func bloo (bool a) {
+    if (a==True) { 
+        display “IF EXECUTED”; 
+        }
+         else {"ELSE EXECUTED" ; }
+         };
+shuru
+bool a = True;
+bloo(a);
+khatam
