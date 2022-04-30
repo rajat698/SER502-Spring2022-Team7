@@ -2,7 +2,7 @@ from ast import parse
 import os, sys
 from pyswip import Prolog
 
-os.system("pip3 install pyswip")
+# os.system("pip3 install pyswip")
 sys.path.insert(0, os.getcwd() + '/src/compiler')
 
 from tokenizer import Tokenizer
@@ -20,7 +20,7 @@ if __name__=='__main__':
      prolog = Prolog()
      prolog.consult('src/compiler/parser.pl') 
      query = "program(T, " + str(tokens) + ", [])."
-     print(query)
+     # print(query)
      #parseTree = ''
      for soln in prolog.query(query):
           parseTree = soln['T']
