@@ -1,7 +1,7 @@
 class Tokenizer:
 
     def __init__(self) -> None:
-        self.keywords = set(['shuru', 'khatam', 'int', 'str', 'bool', 'True', 'False', 'for-loop', 'in', 'range', 'if', 'else', 'display'])
+        self.keywords = set(['shuru', 'khatam', 'int', 'str', 'bool', 'True', 'False', 'for-loop', 'in', 'range', 'if', 'else', 'display', 'func'])
         self.comparators = set(['+=', '-=', '*=', '/=', '>=', '==', '<='])
         self.operators = set(['+', '-', '*', '/', '%', '<', '>', '='])
         self.delimiters = set([';', '(', ')', '{', '}', ',', '?', ':'])

@@ -11,6 +11,7 @@ keyword('range').
 keyword('if').
 keyword('else').
 keyword('display').
+keyword('return').
 
 
 spec_char('!').
@@ -139,6 +140,9 @@ stmt(divAssign(T1,T2)) --> id_name(T1), ['/='], expr(T2).
 % ternary if-else
 stmt(ifelse(T1,T2,T3)) --> bool_expr(T1), ['?'], stmt(T2), [':'], stmt(T3), [';'].
 
+% return statement
+stmt(return(T)) --> ['return'], value(T).
+
 % if-else block
 stmt_block(ifelse(T1,T2,T3)) --> ['if'], 
     ['('], bool_expr(T1), [')'], 
@@ -156,8 +160,22 @@ stmt_block(forR(T1,T2,T3,T4)) --> ['for-loop', '('],
     id_name(T1), ['in', 'range', '('], expr(T2), [','], expr(T3), [')', '{'],
     stmt_list(T4), ['}'].
 
+% FUNCTIONS
+func_list(noneFunc) --> [].
+func_list(funcList(T1,T2)) --> func(T1), func_list(T2).
+func(func(T1,T2,T3)) --> ['func'], id_name(T1), 
+    ['('], parameter_list(T2), [')', '{'], 
+    stmt_list(T3), ['}'].
+% parameters
+parameter_list(nonePmt) --> [].
+parameter_list(T) --> parameter(T).
+parameter_list(pmtList(T1,T2)) --> parameter(T1), [','], parameter_list(T2).
+parameter(pmt(T1,T2)) --> [T1], id_name(T2), {datatype(T1)}.
+
+
+
 % program
-program(T) --> ['shuru'], stmt_list(T), ['khatam'].
+program(prog(T1,T2)) --> func_list(T1), ['shuru'], stmt_list(T2), ['khatam'].
 
     
 
