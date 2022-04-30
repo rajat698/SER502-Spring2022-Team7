@@ -1,0 +1,10 @@
+func evenOrOdd (int a) {
+    if (a%2==0) { 
+        display “Even”; 
+        }
+        else {"Odd" ; }
+        };
+shuru
+int a = 5;
+evenOrOdd(a);
+khatam
