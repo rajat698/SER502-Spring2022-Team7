@@ -19,15 +19,13 @@ Added support for using functions in SKRAV
 Abhishek Masetty:
 Worked on language design for numeric data types and boolean types.
 Created grammar rules for the same in BNF form.
-Created various testcases for the parser.
-Wrote various testcases for evaluator.
-Did end-to-end testing of evaluator, parser and functionality of the language in general
-
 
 Sahil Jambhulkar:
 Worked on language design for the Print, Assignment and String types.
 Created grammar rules for the same in BNF form.
 
 Konark Bhad:
-Worked on language design for the while of our language
-Created grammar rules for the same in BNF form.
+1. Worked on language design for the while of our language
+2. Created grammar rules for the same in BNF form.
+3. Assisted in the implementation of evaluator.
+4. Contributed in documentation and presentation.
