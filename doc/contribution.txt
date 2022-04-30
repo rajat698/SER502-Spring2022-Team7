@@ -23,6 +23,8 @@ Created grammar rules for the same in BNF form.
 Sahil Jambhulkar:
 Worked on language design for the Print, Assignment and String types.
 Created grammar rules for the same in BNF form.
+Assisted in the implementation of evaluator.
+Created documentation and presentation.
 
 Konark Bhad:
 1. Worked on language design for the while of our language
