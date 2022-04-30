@@ -1,10 +1,12 @@
 func evenOrOdd (int a) {
     if (a%2==0) { 
-        display “Even”; 
+        display "Even"; 
         }
-        else {"Odd" ; }
-        };
+        else { 
+        display "Odd";
+        }
+    };
 shuru
-int a = 5;
+int a=6;
 evenOrOdd(a);
 khatam
