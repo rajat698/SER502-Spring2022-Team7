@@ -9,7 +9,7 @@ from evaluator import Evaluator
 
 if __name__=='__main__':
      #READ FILE
-     file = open("src/test.txt", "r")
+     file = open("data/even_odd.xxx", "r")
      program =  file.read()
      # TOKENIZE
      Tk = Tokenizer()
@@ -17,7 +17,7 @@ if __name__=='__main__':
      #print(tokens)
      # PARSE
      prolog = Prolog()
-     prolog.consult('src/compiler/parser.pl')
+     prolog.consult('src/compiler/parser.pl') 
      query = "program(T, " + str(tokens) + ", [])."
      #print(query)
      #parseTree = ''
