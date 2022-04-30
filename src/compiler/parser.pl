@@ -145,10 +145,10 @@ stmt(ifelse(T1,T2,T3)) --> bool_expr(T1), ['?'], stmt(T2), [':'], stmt(T3), [';'
 stmt(return(T)) --> ['return'], value(T).
 
 %function call
+stmt(call(T1,noneArg())) --> id_name(T1), ['(', ')'].
 stmt(call(T1,T2)) --> id_name(T1), ['('] , arg_list(T2), [')'].
-arg_list(noneArg()) --> [].
-arg_list(T) --> id_name(T).
-arg_list(argList(T1,T2)) --> id_name(T1), [','], arg_list(T2).
+arg_list(T) --> value(T).
+arg_list(argList(T1,T2)) --> value(T1), [','], arg_list(T2).
 
 
 % if-else block

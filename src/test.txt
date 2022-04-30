@@ -1,6 +1,6 @@
-$$func bloo (int a, int b, int d) {  int c; c = a + b; return c;};$$
+func bloo (int a, int b) {  int c; c = a + b; return c;};
 
-$$func hello () { display "hello world" ;} $$
+func hello () { display "hello world" ;} 
 
 
 shuru
@@ -9,5 +9,4 @@ int y;
 y = 7 + 3 * (-5 - 3) / 4 ; $$ y=1 $$
 display y;
 for-loop(x=0; x<5 ; x+=1) {display x; }
-display z ;
 khatam
