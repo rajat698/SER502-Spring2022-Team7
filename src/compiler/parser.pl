@@ -139,7 +139,7 @@ stmt(divAssign(T1,T2)) --> id_name(T1), ['/='], expr(T2).
 
 
 % ternary if-else
-stmt(ifelse(T1,T2,T3)) --> bool_expr(T1), ['?'], stmt(T2), [':'], stmt(T3), [';'].
+stmt(ifelse(T1,T2,T3)) --> bool_expr(T1), ['?'], stmt(T2), [':'], stmt(T3).
 
 % return statement
 stmt(return(T)) --> ['return'], value(T).
