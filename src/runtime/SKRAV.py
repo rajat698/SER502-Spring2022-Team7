@@ -23,6 +23,7 @@ if __name__=='__main__':
     #parseTree = ''
     for soln in prolog.query(query):
          parseTree = soln['T']
+         break
          #print(soln['T'])
     #print(parseTree)
     # EVALUATE
