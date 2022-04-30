@@ -2,7 +2,7 @@ from ast import parse
 import os, sys
 from pyswip import Prolog
 
-# os.system("pip3 install requests")
+os.system("pip3 install requests")
 sys.path.insert(0, os.getcwd() + '/src/compiler')
 
 from tokenizer import Tokenizer
