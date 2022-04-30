@@ -1,0 +1,6 @@
+shuru
+int i=0;
+int z=0;
+for-loop(i in range(2,4)) { z = z+ 1; }
+display z;
+khatam
