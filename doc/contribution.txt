@@ -1,6 +1,11 @@
 Rajat:
-Worked on language design for the for loop of our language.
-Created grammar rules for the same in BNF form.
+1. Worked on language design for the for loop of our language.
+2. Created grammar rules for the same in BNF form.
+3. Made the tokeniser of our language from scratch.
+4. Added syntactic sugar to the language.
+5. Tested the tokeniser using unittests, to make it robbust.
+6. Robust testing of final language using many new test cases.
+
 
 Varun Singh:
 Worked on language design for if-else blocks and ternary operators.

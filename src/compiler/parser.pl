@@ -11,6 +11,7 @@ keyword('range').
 keyword('if').
 keyword('else').
 keyword('display').
+keyword('return').
 
 
 spec_char('!').
@@ -119,6 +120,7 @@ stmt_list(stmt_list(T1,T2)) --> stmt_block(T1), stmt_list(T2).
 value(T) --> bool_expr(T).
 value(T) --> expr(T).
 value(T) --> string(T).
+value(call(T1,T2)) --> id_name(T1), ['('] , arg_list(T2), [')'].
 id_name(T) --> [T], {not(keyword(T)) ,atom_chars(T, TList), isIdentifier(TList, [])}.
 stmt(dec(T1,T2)) --> [T1], id_name(T2), {datatype(T1)}.
 stmt(decAssign(T1,T2,T3)) --> [T1], id_name(T2), ['='], value(T3), {datatype(T1)}.
@@ -137,7 +139,17 @@ stmt(divAssign(T1,T2)) --> id_name(T1), ['/='], expr(T2).
 
 
 % ternary if-else
-stmt(ifelse(T1,T2,T3)) --> bool_expr(T1), ['?'], stmt(T2), [':'], stmt(T3), [';'].
+stmt(ifelse(T1,T2,T3)) --> bool_expr(T1), ['?'], stmt(T2), [':'], stmt(T3).
+
+% return statement
+stmt(return(T)) --> ['return'], value(T).
+
+%function call
+stmt(call(T1,noneArg())) --> id_name(T1), ['(', ')'].
+stmt(call(T1,T2)) --> id_name(T1), ['('] , arg_list(T2), [')'].
+arg_list(T) --> value(T).
+arg_list(argList(T1,T2)) --> value(T1), [','], arg_list(T2).
+
 
 % if-else block
 stmt_block(ifelse(T1,T2,T3)) --> ['if'], 
@@ -153,11 +165,26 @@ stmt_block(forT(T1,T2,T3,T4)) --> ['for-loop', '('],
 
 % for-loop range
 stmt_block(forR(T1,T2,T3,T4)) --> ['for-loop', '('],
-    id_name(T1), ['in', 'range', '('], expr(T2), [','], expr(T3), [')', '{'],
+    id_name(T1), ['in', 'range', '('], expr(T2), [','], expr(T3), [')', ')', '{'],
     stmt_list(T4), ['}'].
 
+% FUNCTIONS
+func_list(noneFunc()) --> [].
+func_list(func(T1,T2,T3)) --> ['func'], id_name(T1), 
+    ['('], parameter_list(T2), [')', '{'], 
+    stmt_list(T3), ['}'].
+func_list(funcList(func(T1,T2,T3),T4)) --> ['func'], id_name(T1), 
+    ['('], parameter_list(T2), [')', '{'], 
+    stmt_list(T3), ['}', ';'], func_list(T4).
+% parameters
+parameter_list(nonePmt()) --> [].
+parameter_list(pmt(T1,T2)) --> [T1], id_name(T2), {datatype(T1)}.
+parameter_list(pmtList(pmt(T1,T2),T3)) --> [T1], id_name(T2), {datatype(T1)}, [','], parameter_list(T3).
+
+
+
 % program
-program(T) --> ['shuru'], stmt_list(T), ['khatam'].
+program(prog(T1,T2)) --> func_list(T1), ['shuru'], stmt_list(T2), ['khatam'].
 
     
 
